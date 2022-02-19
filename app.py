@@ -19,12 +19,12 @@ init_upload_dir()
 def index():
     return render_template('index.html')
 
-@app.route("/catalog")
-def index():
+@app.route("/catalog",methods=['GET', 'POST'])
+def catalog():
     return render_template('content_catalog.html')
 
-@app.route("/detail")
-def index():
+@app.route("/detail",methods=['GET', 'POST'])
+def detail():
     return render_template('content_detail.html')
 
 @app.route("/users", methods=['GET', 'POST'])
@@ -72,4 +72,4 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_DIR'], filename)
 
 # 启动服务，监听 9000 端口，监听地址为 0.0.0.0
-app.run(debug=IS_SERVERLESS != True, port=9000, host='0.0.0.0')
+app.run(debug=IS_SERVERLESS != True, port=9000, host='127.0.0.1')
